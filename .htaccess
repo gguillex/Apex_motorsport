@@ -1,9 +1,11 @@
-# Si el servidor no apunta directamente a public/, redirige todas las peticiones allí.
-# El resto de carpetas (src, templates, config, database, tests) están bloqueadas
-# por su propio .htaccess.
+# Cuando el servidor no puede apuntar directamente a public/ (hosting
+# compartido, XAMPP…), todas las peticiones se sirven desde public/ y las URL
+# quedan limpias: /coche.php -> public/coche.php.
+# El resto de carpetas (src, templates, config, database…) nunca son accesibles.
+
+Options -Indexes
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteRule ^$ public/ [L]
-    RewriteCond %{REQUEST_URI} !/public/
-    RewriteRule ^(.*)$ public/$1 [L]
+    RewriteRule ^(?!public/)(.*)$ public/$1 [L]
 </IfModule>

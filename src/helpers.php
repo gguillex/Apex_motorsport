@@ -43,7 +43,15 @@ function base_url(): string
     if ($script !== '' && str_starts_with($script, $public . '/')) {
         $relative = substr($script, strlen($public) + 1);
         if (str_ends_with($scriptName, $relative)) {
-            return $base = substr($scriptName, 0, -strlen($relative));
+            $base = substr($scriptName, 0, -strlen($relative));
+
+            // Si la petición llegó a través del .htaccess de la raíz (la URL no
+            // contiene "public/"), se generan enlaces limpios sin ese segmento.
+            $requestPath = (string) parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH);
+            if (str_ends_with($base, '/public/') && !str_starts_with($requestPath, $base)) {
+                $base = substr($base, 0, -strlen('public/'));
+            }
+            return $base;
         }
     }
 

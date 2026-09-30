@@ -228,6 +228,36 @@ Si no es posible cambiar el *DocumentRoot*, los archivos `.htaccess` incluidos
 redirigen todas las peticiones a `public/` y bloquean el acceso directo al
 resto de carpetas.
 
+### Despliegue en hosting compartido (InfinityFree, Hostinger, cPanel…)
+
+En un hosting compartido no se puede elegir la carpeta raíz ni crear bases de
+datos por SQL. El script `scripts/build-hosting.php` genera un paquete adaptado:
+
+```bash
+php scripts/build-hosting.php --admin-password='TuClaveSegura'
+```
+
+| Opción | Descripción |
+|---|---|
+| `--admin-password` | Contraseña del usuario `admin` (muy recomendable: la de serie es pública). |
+| `--db-host` · `--db-name` · `--db-user` · `--db-password` | Datos de MySQL del hosting. Si se omiten, se rellenan después en `config/config.php`. |
+
+Genera en `dist/`:
+
+- **`apex-motorsport-hosting.zip`**: contenido de `htdocs/` (sin tests ni documentación).
+- **`instalar.sql`**: esquema y datos sin `CREATE DATABASE`, listo para phpMyAdmin.
+
+**Pasos en el hosting**
+
+1. Crea la base de datos MySQL desde el panel y anota servidor, nombre, usuario y contraseña.
+2. En phpMyAdmin, selecciona esa base de datos e importa `instalar.sql`.
+3. Sube `apex-motorsport-hosting.zip` a `htdocs/` y descomprímelo (o sube su contenido por FTP).
+4. Completa los datos de MySQL en `htdocs/config/config.php`.
+5. Activa el certificado SSL gratuito para servir la web por HTTPS.
+
+Las URL quedan limpias (`/coche.php`, `/admin/`) y las carpetas internas no son
+accesibles desde el navegador.
+
 ---
 
 ## Estructura del proyecto
@@ -293,6 +323,9 @@ Apex_motorsport/
 │
 ├── database/
 │   └── schema.sql               # Esquema de la base de datos y datos iniciales
+│
+├── scripts/
+│   └── build-hosting.php        # Empaquetado para hosting compartido
 │
 ├── tests/                       # Batería de tests automáticos
 │   ├── run.php                  # Ejecutor de tests
