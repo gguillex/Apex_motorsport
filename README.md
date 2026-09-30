@@ -656,6 +656,3 @@ Este proyecto se distribuye bajo la licencia **MIT**. Consulta el archivo
 ## Autor
 
 **Guillermo García Andugar** · [@gguillex](https://github.com/gguillex)
-
-<sub>Las marcas y modelos de vehículos mencionados pertenecen a
-sus respectivos propietarios y se utilizan únicamente con fines ilustrativos.</sub>
