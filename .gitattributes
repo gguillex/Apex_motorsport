@@ -1,0 +1,12 @@
+# Normaliza los finales de línea a LF en el repositorio
+* text=auto eol=lf
+
+# Binarios
+*.jpg  binary
+*.jpeg binary
+*.png  binary
+*.webp binary
+*.otf  binary
+
+# Estadísticas de lenguajes de GitHub
+docs/** linguist-documentation

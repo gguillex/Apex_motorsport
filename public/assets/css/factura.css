@@ -1,0 +1,104 @@
+/* ==========================================================================
+   Factura
+   ========================================================================== */
+
+.invoice-box {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-md);
+}
+
+.invoice-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: 20px;
+  margin-bottom: 28px;
+}
+
+.invoice-brand {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  color: var(--color-accent);
+  letter-spacing: 0.08em;
+}
+
+.invoice-muted {
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+.invoice-meta > div {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.invoice-meta dt { color: var(--color-text-muted); }
+.invoice-meta dd { margin: 0; font-weight: 700; }
+
+.invoice-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.invoice-lines {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.invoice-lines th,
+.invoice-lines td {
+  padding: 12px 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.invoice-lines thead th {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+}
+
+.invoice-lines tfoot th { font-weight: normal; color: var(--color-text-muted); text-align: right; }
+.invoice-lines .num { text-align: right; white-space: nowrap; }
+
+.invoice-total th,
+.invoice-total td {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-accent) !important;
+  border-bottom: none;
+}
+
+.invoice-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+@media (max-width: 600px) {
+  .invoice-box { padding: 24px 16px; }
+  .invoice-header { flex-direction: column; }
+  .invoice-meta > div { justify-content: flex-start; }
+}
+
+@media print {
+  .nav-main,
+  .site-footer,
+  .skip-link,
+  .flash-stack,
+  .no-print { display: none !important; }
+
+  body, .page { background: #fff; padding: 0; }
+  .invoice-box { box-shadow: none; border: none; }
+}

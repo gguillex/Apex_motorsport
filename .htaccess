@@ -1,0 +1,9 @@
+# Si el servidor no apunta directamente a public/, redirige todas las peticiones allí.
+# El resto de carpetas (src, templates, config, database, tests) están bloqueadas
+# por su propio .htaccess.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^$ public/ [L]
+    RewriteCond %{REQUEST_URI} !/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

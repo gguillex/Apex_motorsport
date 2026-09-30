@@ -1,0 +1,4 @@
+/config/config.php
+/public/assets/img/coches/upload-*
+.DS_Store
+*.log

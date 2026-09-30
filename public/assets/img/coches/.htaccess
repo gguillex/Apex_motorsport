@@ -1,0 +1,4 @@
+# Impide ejecutar scripts en la carpeta de imágenes subidas.
+<FilesMatch "\.(php[0-9]?|phtml|phar|cgi|pl|py)$">
+    Require all denied
+</FilesMatch>
